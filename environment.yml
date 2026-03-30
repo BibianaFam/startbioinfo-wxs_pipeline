@@ -1,0 +1,19 @@
+name: startbioinfo
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+
+dependencies:
+  - python=3.10
+  - openjdk=17
+  - fastqc
+  - multiqc
+  - bwa
+  - samtools
+  - bcftools
+  - gatk4
+  - picard
+  - seqtk
+  - wget
+  - curl
