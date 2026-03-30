@@ -1,4 +1,4 @@
-# StartBioinfo WXS Pipeline
+# StartBioinfo WXS pipeline
 
 Educational workflow for germline variant calling from Whole Exome Sequencing data following GATK Best Practices.
 This repository was developed for training purposes and demonstrates the main steps of a standard NGS analysis workflow.
