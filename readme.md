@@ -48,7 +48,6 @@ conda activate startbioinfo
 scripts/setup_ref.sh
 
 This downloads:
-
 hg38 reference  
 dbSNP  
 known indels  
