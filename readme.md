@@ -29,14 +29,14 @@ Linux
 8–16 GB RAM  
 80 GB disk space  
 
-Software requirements handled by Conda.
+Software requirements handled by conda
 
 ---
 
 ## Installation
 
 Create environment:
-conda env create -f env/environment.yml
+conda env create -f environment.yml
 
 Activate:
 conda activate startbioinfo
@@ -48,6 +48,7 @@ conda activate startbioinfo
 scripts/setup_ref.sh
 
 This downloads:
+
 hg38 reference  
 dbSNP  
 known indels  
@@ -67,6 +68,7 @@ NA19648 WES sample.
 scripts/run_wxs.sh
 
 This performs:
+
 FastQC  
 Alignment  
 Duplicate marking  
@@ -109,8 +111,9 @@ Recommended total:
 ---
 
 ## Notes
-This workflow is intended for training purposes.
-NOT optimized for large scale or clinical production analysis.
+This workflow is intended only for training purposes
+NOT optimized for large scale or clinical production analysis
+
 
 ---
 
