@@ -111,8 +111,7 @@ Recommended total:
 ---
 
 ## Notes
-This workflow is intended only for training purposes
-NOT optimized for large scale or clinical production analysis
+This workflow is intended only for training purposes. NOT optimized for large scale or clinical production analysis.
 
 
 ---
