@@ -78,13 +78,17 @@ Variant calling
 ## Output structure
 Results are stored in:
 results/
-|_qc/
+
+qc/
   FastQC reports
-|_bam/
+
+bam/
   Aligned BAM files
-|_metrics/
+
+metrics/
   Alignment statistics
-|_gvcf/
+
+gvcf/
   Variant calls
 
 ---
