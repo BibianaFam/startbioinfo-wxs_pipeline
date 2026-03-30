@@ -78,6 +78,7 @@ Variant calling
 
 ## Output structure
 Results are stored in:
+
 results/
 
 qc/
