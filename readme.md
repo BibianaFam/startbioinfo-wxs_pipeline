@@ -59,7 +59,7 @@ exome intervals
 scripts/download_wxs.sh
 
 This downloads:
-NA19648 WES sample.
+NA19648 wxs sample
 
 ---
 
