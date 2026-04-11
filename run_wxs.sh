@@ -2,7 +2,6 @@
 set -euo pipefail
 
 #inicializar conda
-source $(conda info --base)/etc/profile.d/conda.sh
 conda activate startbioinfo
 
 #setar o local dos arquivos
@@ -11,7 +10,6 @@ R2="fastq/SRR099389_2.fastq.gz"
 
 sample="NA19648"
 threads="${threads:-4}"
-
 ref="ref/hg38/Homo_sapiens_assembly38.fasta"
 dbsnp="ref/hg38/Homo_sapiens_assembly38.dbsnp138.vcf"
 known1="ref/hg38/Homo_sapiens_assembly38.known_indels.vcf.gz"
@@ -53,7 +51,6 @@ gatk ApplyBQSR \
   --bqsr-recal-file "results/bam/${sample}.recal.table" \
   -L "${target}" \
   -O "results/bam/${sample}.recal.bam"
-
 samtools index "results/bam/${sample}.recal.bam"
 
 # métricas
@@ -67,8 +64,20 @@ gatk HaplotypeCaller \
   -ERC GVCF \
   -O "results/gvcf/${sample}.g.vcf.gz"
 
-# criar o gvcf para poder uniar a outras amostras
-gatk IndexFeatureFile -I "results/gvcf/${sample}.g.vcf.gz" || true
-bcftools view "results/gvcf/${sample}.g.vcf.gz" | head -n 40
+# criar o vcf raw
+gatk GenotypeGVCFs \
+-R "${ref}" \
+-V "results/gvcf/${sample}.g.vcf.gz" \
+-O "results/gvcf/${sample}.vcf.gz"
 
-echo "Concluído."
+#Para análises a nível de coorte utiliza o CombineGVCFs e depois fazer o Joint genotyping GenotypeGVCFs
+bcftools view -v snps,indels \
+"results/gvcf/${sample}.vcf.gz" \
+-Oz \
+-o "results/gvcf/${sample}.raw.snps_indels.vcf.gz"
+bcftools index -f NA19648.raw.snps_indels.vcf.gz
+
+bcftools view -H NA19648.raw.snps_indels.vcf.gz | wc -l
+bcftools stats NA19648.raw.snps_indels.vcf.gz > NA19648.raw.snps_indels.stats.txt
+
+echo "Fim"
