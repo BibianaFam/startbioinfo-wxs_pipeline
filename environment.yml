@@ -6,13 +6,12 @@ channels:
 
 dependencies:
   - python=3.10
-  - openjdk=17
   - fastqc
   - multiqc
   - bwa
   - samtools
   - bcftools
-  - gatk4
+  - freebayes
   - picard
   - seqtk
   - wget
