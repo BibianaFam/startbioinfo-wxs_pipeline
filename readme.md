@@ -13,11 +13,8 @@ The workflow includes:
 2. FASTQ download
 3. Quality control (FastQC)
 4. Read alignment (BWA)
-5. BAM processing (SAMtools + GATK)
-6. Duplicate marking
-7. Base Quality Score Recalibration (BQSR)
-8. Variant calling (HaplotypeCaller)
-9. Generation of gVCF files
+5. BAM processing (SAMtools + Freebayes)
+6. VCf filter (bcftools)
 
 ---
 
@@ -49,6 +46,8 @@ scripts/setup_ref.sh
 
 This downloads:
 hg38 reference  
+
+#optional other reference o Broad bucket...
 dbSNP  
 known indels  
 exome intervals  
@@ -70,8 +69,6 @@ This performs:
 
 FastQC  
 Alignment  
-Duplicate marking  
-BQSR  
 Variant calling  
 
 ---
@@ -90,23 +87,8 @@ bam/
 metrics/
   Alignment statistics
 
-gvcf/
+vcf/
   Variant calls
-
----
-
-## Expected disk usage
-References:
-~20GB
-
-FASTQ:
-~15GB
-
-BAM processing:
-~40GB
-
-Recommended total:
-~80GB
 
 ---
 
