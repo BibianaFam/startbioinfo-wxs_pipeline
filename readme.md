@@ -14,7 +14,7 @@ The workflow includes:
 3. Quality control (FastQC)
 4. Read alignment (BWA)
 5. BAM processing (SAMtools + Freebayes)
-6. VCf filter (bcftools)
+6. VCF filter (bcftools)
 
 ---
 
