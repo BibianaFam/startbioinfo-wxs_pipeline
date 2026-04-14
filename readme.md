@@ -27,7 +27,7 @@ Recommended system:
 
 Linux  
 8–16 GB RAM  
-80 GB disk space  
+20 GB disk space  
 
 Software requirements handled by conda
 
