@@ -13,7 +13,7 @@ threads="${threads:-4}"
 ref="ref/hg38/Homo_sapiens_assembly38.fasta"
 target="ref/intervals/hg38_exome.interval_list"
 
-#criar as pastas de output
+# criar as pastas de output
 mkdir -p results/qc results/bam results/metrics results/vcf
 
 # analisar a qualidade das reads- FastQC
@@ -27,7 +27,7 @@ samtools index "results/bam/${sample}.sorted.bam"
 # métricas básicas
 samtools flagstat "results/bam/${sample}.recal.bam" > "results/metrics/${sample}.flagstat.txt"
 
-#chamada de variantes
+# chamada de variantes
 freebayes -f "${ref}" -t "${target}" "results/bam/${sample}.bam" | bgzip > "results/vcf/${sample}.freebayes.vcf.gz"
 bcftools index -t "results/vcf/${sample}.freebayes.vcf.gz"
 
@@ -37,4 +37,4 @@ bcftools view -v snps,indels "results/vcf/${sample}.freebayes.vcf.gz" | bcftools
 # estatísticas do VCF
 bcftools stats "results/vcf/${sample}.freebayes.pass.vcf.gz" > "results/metrics/${sample}.freebayes.pass.stats.txt"
 
-echo "Fim"
+echo "fim"
