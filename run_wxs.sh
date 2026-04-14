@@ -6,8 +6,8 @@ set -euo pipefail
 conda activate startbioinfo
 
 #setar o local dos arquivos
-R1="fastq/SRR099389_1.fastq.gz"
-R2="fastq/SRR099389_2.fastq.gz"
+R1="fastq/NA19648_1.fastq.gz"
+R2="fastq/NA19648_2.fastq.gz"
 sample="NA19648"
 threads="${threads:-4}"
 ref="ref/hg38/Homo_sapiens_assembly38.fasta"
