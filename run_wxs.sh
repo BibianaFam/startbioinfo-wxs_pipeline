@@ -14,7 +14,7 @@ ref="ref/hg38/Homo_sapiens_assembly38.fasta"
 target="ref/intervals/hg38_exome.interval_list"
 
 #criar as pastas de output
-mkdir -p results/qc results/bam results/metrics results/gvcf
+mkdir -p results/qc results/bam results/metrics results/vcf
 
 # analisar a qualidade das reads- FastQC
 fastqc -t "${threads}" -o results/qc "${R1}" "${R2}"
