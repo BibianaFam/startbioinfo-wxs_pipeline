@@ -26,8 +26,8 @@ The workflow includes:
 Recommended system:
 
 Linux  
-8–16 GB RAM  
-20 GB disk space  
+8-16 GB RAM  
+~20 GB disk space  
 
 Software requirements handled by conda
 
