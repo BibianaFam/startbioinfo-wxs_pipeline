@@ -2,7 +2,7 @@
 set -euo pipefail
 
 #inicializar conda
-#source $(conda info --base)/etc/profile.d/conda.sh
+source $(conda info --base)/etc/profile.d/conda.sh
 conda activate startbioinfo
 
 #setar o local dos arquivos
@@ -26,13 +26,17 @@ samtools index "results/bam/${sample}.sorted.bam"
 
 # métricas básicas
 samtools flagstat "results/bam/${sample}.recal.bam" > "results/metrics/${sample}.flagstat.txt"
-
+samtools depth -a -b "${target}" \
+  "results/bam/${sample}.sorted.bam" \
+  > "results/metrics/${sample}.depth.tsv"
+  
 # chamada de variantes
 freebayes -f "${ref}" -t "${target}" "results/bam/${sample}.bam" | bgzip > "results/vcf/${sample}.freebayes.vcf.gz"
-bcftools index -t "results/vcf/${sample}.freebayes.vcf.gz"
+bcftools sort "results/vcf/${sample}.freebayes.vcf.gz" -Oz -o "results/vcf/${sample}.freebayes.sorted.vcf.gz"
+bcftools index -t "results/vcf/${sample}.freebayes.sorted.vcf.gz"
 
 # filtrar SNPs e indels com QUAL >= 20"
-bcftools view -v snps,indels "results/vcf/${sample}.freebayes.vcf.gz" | bcftools filter -i 'QUAL>=20' -Oz -o "results/vcf/${sample}.freebayes.pass.vcf.gz"
+bcftools view -v snps,indels "results/vcf/${sample}.freebayes.sorted.vcf.gz" | bcftools filter -i 'QUAL>=20' -Oz -o "results/vcf/${sample}.freebayes.pass.vcf.gz"
 
 # estatísticas do VCF
 bcftools stats "results/vcf/${sample}.freebayes.pass.vcf.gz" > "results/metrics/${sample}.freebayes.pass.stats.txt"
